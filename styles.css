@@ -24,6 +24,7 @@ img {
 
 .post {
   flex: 1 1 200px;
+  overflow-wrap: break-word; /* for silly long hashtags */
 }
 .post img {
   border-radius: 1rem;
