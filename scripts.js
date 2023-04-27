@@ -63,3 +63,29 @@ const go = () => {
 }
 
 const download = item => video(item)
+
+const combo = async query => {
+  g('status').textContent = `Attempting to play first for ${query}…`
+  const response = await fetch(api, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      // endpoint: 'combo',
+      options: {
+        category: 'videos',
+        query: query,
+      },
+    }),
+  })
+  const json = await response.json()
+  const video = document.createElement('video')
+  video.autoplay = true
+  video.controls = true
+  video.loop = true
+  video.src = json.url
+  g('status').appendChild(video)
+}
+
+const first = () => {
+  combo(g('input').value)
+}
